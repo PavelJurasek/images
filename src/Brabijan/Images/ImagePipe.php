@@ -162,7 +162,11 @@ class ImagePipe extends Nette\Object
 			$image = $image->getFilename();
 		} elseif (empty($image)) {
 			return "#";
-		}
+		} else {
+            $parts = preg_split('~\/(?=[^\/]*$)~', $image);
+            $image = array_pop($parts);
+            $this->setNamespace(implode(",", $parts));
+        }
 		if ($size === NULL) {
 			return $this->getPath() . "/" . $this->namespace . $this->originalPrefix . "/" . $image;
 		}

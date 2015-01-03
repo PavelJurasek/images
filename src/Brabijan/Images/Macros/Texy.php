@@ -14,7 +14,7 @@ class Texy extends Nette\Object
 		$texy->addHandler("image", function (\TexyHandlerInvocation $invocation, \TexyImage $image, $link) use ($imagePipe) {
 			$arguments = Helpers::prepareMacroArguments($image->URL);
 			try {
-				$image->URL = $imagePipe->setNamespace($arguments["namespace"])->request($arguments["name"], $arguments["size"], $arguments["flags"], TRUE);
+				$image->URL = $imagePipe->request($arguments["name"], $arguments["size"], $arguments["flags"], TRUE);
 			} catch (FileNotFoundException $e) {
 				$image->URL = $arguments["name"];
 				if(!empty($arguments["size"])) {
