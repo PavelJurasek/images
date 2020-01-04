@@ -132,10 +132,10 @@ class Latte extends MacroSet
 
 
 	/**
-	 * @param \Nette\Templating\Template $template
+	 * @param \Latte\Runtime\Template $template
 	 * @throws \Nette\InvalidStateException
 	 */
-	public static function validateTemplateParams(Template $template)
+	public static function validateTemplateParams($template)
 	{
 		$params = $template->getParameters();
 		if (!isset($params['_imagePipe']) || !$params['_imagePipe'] instanceof ImagePipe) {
