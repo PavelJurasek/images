@@ -124,7 +124,7 @@ class Latte extends MacroSet
 		}
 
 		return array(
-			get_called_class() . '::validateTemplateParams($template);',
+			get_called_class() . '::validateTemplateParams($this);',
 			NULL
 		);
 	}
