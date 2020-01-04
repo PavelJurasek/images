@@ -2,6 +2,7 @@
 
 namespace Brabijan\Images;
 
+use Latte\CompileException;
 use Nette;
 
 /**
@@ -153,7 +154,7 @@ class ImagePipe
 	 * @param null $flags
 	 * @param bool $strictMode
 	 * @return string
-	 * @throws \Nette\Latte\CompileException
+	 * @throws \Latte\CompileException
 	 * @throws FileNotFoundException;
 	 */
 	public function request($image, $size = NULL, $flags = NULL, $strictMode = FALSE)
@@ -171,27 +172,27 @@ class ImagePipe
 
 		list($width, $height) = explode("x", $size);
 		if ($flags == NULL) {
-			$flags = Nette\Image::FIT;
+			$flags = Nette\Utils\Image::FIT;
 		} elseif (!is_int($flags)) {
 			switch (strtolower($flags)):
 				case "fit":
-					$flags = Nette\Image::FIT;
+					$flags = Nette\Utils\Image::FIT;
 					break;
 				case "fill":
-					$flags = Nette\Image::FILL;
+					$flags = Nette\Utils\Image::FILL;
 					break;
 				case "exact":
-					$flags = Nette\Image::EXACT;
+					$flags = Nette\Utils\Image::EXACT;
 					break;
 				case "shrink_only":
-					$flags = Nette\Image::SHRINK_ONLY;
+					$flags = Nette\Utils\Image::SHRINK_ONLY;
 					break;
 				case "stretch":
-					$flags = Nette\Image::STRETCH;
+					$flags = Nette\Utils\Image::STRETCH;
 					break;
 			endswitch;
 			if (!isset($flags)) {
-				throw new Nette\Latte\CompileException('Mode is not allowed');
+				throw new CompileException('Mode is not allowed');
 			}
 		}
 
@@ -202,8 +203,8 @@ class ImagePipe
 		if (!file_exists($thumbnailFile)) {
 			$this->mkdir(dirname($thumbnailFile));
 			if (file_exists($originalFile)) {
-				$img = Nette\Image::fromFile($originalFile);
-				if ($flags == "crop") {
+				$img = Nette\Utils\Image::fromFile($originalFile);
+				if ($flags === "crop") {
 					$img->crop('50%', '50%', $width, $height);
 				} else {
 					$img->resize($width, $height, $flags);
