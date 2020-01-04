@@ -39,7 +39,7 @@ class ImagesExtension extends Nette\DI\CompilerExtension
 		}
 
 		$builder->addDefinition($this->prefix('imagePipe'))->setClass('Brabijan\Images\ImagePipe', array($config['assetsDir'],
-			$this->containerBuilder->parameters['wwwDir']))
+			$this->getContainerBuilder()->parameters['wwwDir']))
 			->addSetup('setAssetsDir', array($config['assetsDir']));
 		$builder->addDefinition($this->prefix('imageStorage'))->setClass('Brabijan\Images\ImageStorage', array($config['assetsDir']));
 		$builder->addDefinition($this->prefix('fileBrowser'))->setClass('Brabijan\Images\FileBrowser');
