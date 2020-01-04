@@ -66,8 +66,8 @@ class ImagesExtension extends Nette\DI\CompilerExtension
 	public function getConfig(array $defaults = NULL, $expand = TRUE)
 	{
 		$defaults = array(
-			'storageDir' => $this->containerBuilder->parameters['wwwDir'] . '/assets',
-			'assetsDir' => $this->containerBuilder->parameters['wwwDir'] . '/assets'
+			'storageDir' => $this->getContainerBuilder()->parameters['wwwDir'] . '/assets',
+			'assetsDir' => $this->getContainerBuilder()->parameters['wwwDir'] . '/assets'
 		);
 
 		return parent::getConfig($defaults, $expand);
