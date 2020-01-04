@@ -6,8 +6,10 @@ use Brabijan\Images\FileNotFoundException;
 use Brabijan\Images\ImagePipe;
 use Nette;
 
-class Texy extends Nette\Object
+class Texy
 {
+
+	use Nette\SmartObject;
 
 	public static function register(\Texy $texy, ImagePipe $imagePipe)
 	{

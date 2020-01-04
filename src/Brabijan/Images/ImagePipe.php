@@ -7,8 +7,10 @@ use Nette;
 /**
  * @author Jan Brabec <brabijan@gmail.com>
  */
-class ImagePipe extends Nette\Object
+class ImagePipe
 {
+
+	use Nette\SmartObject;
 
 	/** @var string */
 	private $assetsDir;

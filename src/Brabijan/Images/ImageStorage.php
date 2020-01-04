@@ -10,8 +10,10 @@ use Nette\Utils\Strings;
 /**
  * @author Filip Procházka <filip.prochazka@kdyby.org>
  */
-class ImageStorage extends Nette\Object
+class ImageStorage
 {
+
+	use Nette\SmartObject;
 
 	/** @var string */
 	private $imagesDir;
